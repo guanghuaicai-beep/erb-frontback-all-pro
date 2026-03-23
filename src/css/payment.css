@@ -1,0 +1,206 @@
+:root {
+  --clr-white: #ffffff;
+  --clr-black: #000000;
+  --clr-grey-1: #f9f9f9;
+  --clr-grey-4: #cccccc;
+  --clr-grey-5: #bbbbbb;
+  --clr-grey-6: #999999;
+  --clr-grey-7: #666666;
+  --clr-grey-8: #444444;
+  --clr-grey-9: #222222;
+
+  --clr-pri-1: #e0f7f6;
+  --clr-pri-2: #c8f0ee;
+  --clr-pri-3: #a0e5e2;
+  --clr-pri-6: #4fc3c0;
+  --clr-pri-7: #3ba9a7;
+  --clr-pri-8: #2f8f8d;
+  --clr-pri-9: #1f6f6d;
+
+  --radius: 8px;
+  --transition: all 0.3s ease;
+  --dark-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  --light-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  --ff-primary: "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.payment-container {
+  /* margin-top: 10rem; */
+  max-width: 500px;
+  margin: 15rem auto;
+  padding: 2rem;
+  background: var(--clr-white);
+  border-radius: var(--radius);
+  box-shadow: var(--dark-shadow);
+  font-family: var(--ff-primary);
+  color: var(--clr-black);
+  transition: var(--transition);
+}
+
+.payment-container h2 {
+  color: var(--clr-pri-9);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.payment-container p {
+  color: var(--clr-grey-8);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.payment-method-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 2px solid var(--clr-grey-4);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--clr-grey-1);
+  position: relative;
+  transition: var(--transition);
+}
+
+.payment-method-card span {
+  line-height: 24px;
+  font-size: 0.95rem;
+}
+
+.payment-method-card:hover {
+  border-color: var(--clr-pri-6);
+  background: var(--clr-pri-2);
+  transform: translateY(-2px);
+  box-shadow: var(--light-shadow);
+}
+
+.payment-method-card.selected {
+  border-color: var(--clr-pri-7);
+  background: var(--clr-pri-3);
+  box-shadow: 0 8px 24px rgba(79, 195, 192, 0.2);
+}
+
+.payment-method-card .checkmark {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: var(--clr-pri-6);
+  border-radius: 50%;
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 0;
+  transform: scale(0);
+  transition: var(--transition);
+}
+
+.payment-method-card .checkmark.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ✅ icon size 縮細 */
+.method-icon {
+  width: 28px;   /* 控制圖片寬度 */
+  height: auto;  /* 自動保持比例 */
+  margin-right: 6px;
+}
+
+.card-details {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--clr-pri-1);
+  border: 1px solid var(--clr-grey-4);
+  border-radius: var(--radius);
+  box-shadow: var(--light-shadow);
+}
+
+.card-details .input-group {
+  margin-bottom: 1rem;
+}
+
+.card-details .input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--clr-grey-9);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.card-details .input-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--clr-grey-5);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: var(--clr-white);
+  color: var(--clr-black);
+  transition: var(--transition);
+  font-family: var(--ff-primary);
+}
+
+.card-details .input-group input:focus {
+  outline: none;
+  border-color: var(--clr-pri-7);
+  box-shadow: 0 0 0 3px rgba(79, 195, 192, 0.2);
+}
+
+.card-details .input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.card-details .error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.card-details .valid {
+  color: green;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+
+
+.card-details .confirm-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, var(--clr-pri-6), var(--clr-pri-8));
+  color: var(--clr-white);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.card-details .confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--dark-shadow);
+}

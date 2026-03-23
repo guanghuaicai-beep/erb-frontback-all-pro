@@ -1,0 +1,222 @@
+export const  companyrecruitmentList = [
+    {
+        id: 1,
+        workjob: "Freelance Commercial Photographer",
+        department: "Marketing Department",
+        position: "Hybrid (Hong Kong Island)",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$350/hr",
+        jobrequeirment1: "Proficient in manual DSLR/mirrorless camera operation",
+        jobrequeirment2: "Strong composition and lighting skills",
+        jobrequeirment3: "Adobe Lightroom post-processing experience"
+    },
+    {
+        id: 2,
+        workjob: "Product Photographer",
+        department: "E-commerce Team",
+        position: "Kwun Tong",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$18-25k",
+        jobrequeirment1: "Expertise in aperture, shutter speed, ISO control",
+        jobrequeirment2: "Portrait and product photography experience",
+        jobrequeirment3: "Lens selection knowledge for different scenarios"
+    },
+    {
+        id: 3,
+        workjob: "Junior Graphic Designer",
+        department: "Creative Studio",
+        position: "Tsim Sha Tsui",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$16-22k",
+        jobrequeirment1: "Proficient in Adobe Illustrator vector graphics",
+        jobrequeirment2: "Adobe Photoshop image editing and compositing",
+        jobrequeirment3: "Brand identity design portfolio"
+    },
+    {
+        id: 4,
+        workjob: "Social Media Visual Designer",
+        department: "Digital Marketing",
+        position: "Remote/Hybrid",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$280/hr",
+        jobrequeirment1: "Web graphics and social media assets creation",
+        jobrequeirment2: "Color theory and typography expertise",
+        jobrequeirment3: "Logo and illustration design experience"
+    },
+    {
+        id: 5,
+        workjob: "Digital Marketing Assistant",
+        department: "Online Marketing Team",
+        position: "North Point",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$15-20k",
+        jobrequeirment1: "SEO keyword research and on-page optimization",
+        jobrequeirment2: "Google Analytics web traffic analysis",
+        jobrequeirment3: "Social media and content marketing experience"
+    },
+    {
+        id: 6,
+        workjob: "PPC Advertising Specialist",
+        department: "Performance Marketing",
+        position: "Causeway Bay",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$320/hr",
+        jobrequeirment1: "Google Ads campaign management",
+        jobrequeirment2: "PPC advertising optimization",
+        jobrequeirment3: "Digital strategy development skills"
+    },
+    {
+        id: 7,
+        workjob: "Project Coordinator",
+        department: "Operations Department",
+        position: "Kowloon Bay",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$22-30k",
+        jobrequeirment1: "PMBOK knowledge (People, Process, Business)",
+        jobrequeirment2: "Risk assessment and stakeholder management",
+        jobrequeirment3: "Agile/hybrid project management experience"
+    },
+    {
+        id: 8,
+        workjob: "Content Writer (Short Form Video)",
+        department: "Social Media Content",
+        position: "Hybrid (Wong Chuk Hang)",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$250/hr",
+        jobrequeirment1: "Three-act structure storytelling",
+        jobrequeirment2: "Script formatting and dialogue writing",
+        jobrequeirment3: "Visual storytelling principles"
+    },
+    {
+        id: 9,
+        workjob: "Junior Copywriter",
+        department: "Creative Department",
+        position: "Central",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$18-24k",
+        jobrequeirment1: "Character development and narrative arcs",
+        jobrequeirment2: "Compelling short story creation",
+        jobrequeirment3: "Professional script formatting knowledge"
+    },
+    {
+        id: 10,
+        workjob: "Investment Advisory Assistant",
+        department: "Wealth Management",
+        position: "IFC Mall",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$20-28k",
+        jobrequeirment1: "Asset allocation and diversification strategies",
+        jobrequeirment2: "Basic securities analysis",
+        jobrequeirment3: "Cryptocurrency and blockchain fundamentals"
+    },
+    {
+        id: 11,
+        workjob: "Sports Nutrition Coach",
+        department: "Fitness Centre",
+        position: "Multiple Locations",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$300/hr",
+        jobrequeirment1: "Macronutrient and micronutrient knowledge",
+        jobrequeirment2: "Nutrition plans for fitness goals",
+        jobrequeirment3: "Pre/post-workout nutrition strategies"
+    },
+    {
+        id: 12,
+        workjob: "Wellness Program Facilitator",
+        department: "Corporate Wellness",
+        position: "Hybrid",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$280/hr",
+        jobrequeirment1: "Mindfulness meditation facilitation",
+        jobrequeirment2: "Stress reduction program delivery",
+        jobrequeirment3: "Group workshop leadership skills"
+    },
+    {
+        id: 13,
+        workjob: "Pastry Kitchen Assistant",
+        department: "Hospitality",
+        position: "Tsim Sha Tsui",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$16-22k",
+        jobrequeirment1: "Choux pastry and pâte sucrée techniques",
+        jobrequeirment2: "French pastry production skills",
+        jobrequeirment3: "Professional baking precision"
+    },
+    {
+        id: 14,
+        workjob: "Sommelier Assistant",
+        department: "Fine Dining",
+        position: "Central",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$260/hr",
+        jobrequeirment1: "WSET Level 2 wine knowledge",
+        jobrequeirment2: "Wine tasting and description skills",
+        jobrequeirment3: "Major grape varieties and regions"
+    },
+    {
+        id: 15,
+        workjob: "Junior Network Administrator",
+        department: "IT Infrastructure",
+        position: "Sha Tin",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$20-26k",
+        jobrequeirment1: "Cisco CCNA networking fundamentals",
+        jobrequeirment2: "LAN configuration and IP addressing",
+        jobrequeirment3: "Router and switch basic configuration"
+    },
+    {
+        id: 16,
+        workjob: "Cybersecurity Analyst (Entry Level)",
+        department: "Information Security",
+        position: "Quarry Bay",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$22-28k",
+        jobrequeirment1: "CEH v12 ethical hacking methodologies",
+        jobrequeirment2: "Reconnaissance and vulnerability scanning",
+        jobrequeirment3: "Security system testing experience"
+    },
+    {
+        id: 17,
+        workjob: "Data Analyst Intern",
+        department: "Business Intelligence",
+        position: "Remote",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$220/hr",
+        jobrequeirment1: "Python Pandas and NumPy data manipulation",
+        jobrequeirment2: "Matplotlib/Seaborn data visualization",
+        jobrequeirment3: "Exploratory data analysis skills"
+    },
+    {
+        id: 18,
+        workjob: "Bilingual Customer Service Officer",
+        department: "Client Services",
+        position: "Multiple Locations",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$17-23k",
+        jobrequeirment1: "Business English presentation skills",
+        jobrequeirment2: "Professional email/report writing",
+        jobrequeirment3: "JLPT N5 conversational Japanese"
+    },
+    {
+        id: 19,
+        workjob: "Barista (Specialty Coffee)",
+        department: "Café Operations",
+        position: "Sheung Wan",
+        workingmode: "Part-time",
+        monsalary: "Hourly rate：HKD$70/hr + Tips",
+        jobrequeirment1: "V60 pour-over and AeroPress brewing",
+        jobrequeirment2: "Latte art (heart, rosetta patterns)",
+        jobrequeirment3: "Espresso extraction techniques"
+    },
+    {
+        id: 20,
+        workjob: "Frontend Web Developer (Junior)",
+        department: "Digital Agency",
+        position: "Hybrid (Mong Kok)",
+        workingmode: "Full-time",
+        monsalary: "Salary：HKD$18-24k",
+        jobrequeirment1: "HTML5/CSS3 responsive web design",
+        jobrequeirment2: "Flexbox and CSS Grid layout skills",
+        jobrequeirment3: "JavaScript DOM manipulation experience"
+    }
+];

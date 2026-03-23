@@ -1,0 +1,62 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --clr-primary-1:  #e5f0ff;
+    --clr-primary-2:  #cce0ff;
+    --clr-primary-3:  #99c2ff;
+    --clr-primary-4:  #66a3ff;
+    --clr-primary-5:  #3385ff;
+    --clr-primary-6:  #0066ff;
+    --clr-primary-7:  #0052cc;
+    --clr-primary-8:  #003d99;
+    --clr-primary-9:  #002966;
+    --clr-primary-10: #001433;
+    --clr-primary-11: #000e24;
+
+    --clr-grey-1:  hsla(216, 100%, 95%);
+    --clr-grey-2:  hsla(216, 100%, 90%);
+    --clr-grey-3:  hsla(216, 100%, 80%);
+    --clr-grey-4:  hsla(216, 100%, 70%);
+    --clr-grey-5:  hsla(216, 100%, 60%);
+    --clr-grey-6:  hsla(216, 100%, 50%);
+    --clr-grey-7:  hsla(216, 100%, 40%);
+    --clr-grey-8:  hsla(216, 100%, 30%);
+    --clr-grey-9:  hsla(216, 100%, 20%);
+    --clr-grey-10: hsla(216, 100%, 10%);
+    --clr-grey-11: hsla(216, 100%, 7.5%);
+
+    --clr-white: #fff;
+    --clr-black: #222;
+}
+
+.btn-signout {
+    margin-left: 10px;
+    margin-right: 30px;
+    font-size: 1.5rem;
+    padding: 3px 8px;           /* slightly better click area — you can change back to 3px if needed */
+    border-radius: 8px;
+    background: var(--clr-primary-2);
+    color: var(--clr-primary-9);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: var(--clr-primary-9);
+        color: var(--clr-primary-2);
+    }
+}
+
+@media (max-width: 600px) {
+    .btn-signout {
+        margin-left: 8px;
+        margin-right: 16px;
+        font-size: 1.4rem;
+        padding: 3px 6px;
+    }
+}

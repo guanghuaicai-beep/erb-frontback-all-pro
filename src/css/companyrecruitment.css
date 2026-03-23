@@ -1,0 +1,378 @@
+:root{
+    --clr-primary-1: #e5f0ff;
+    --clr-primary-2: #cce0ff;
+    --clr-primary-3: #99c2ff;
+    --clr-primary-4: #66a3ff;
+    --clr-primary-5: #3385ff;
+    --clr-primary-6: #0066ff;
+    --clr-primary-7: #0052cc;
+    --clr-primary-8: #003d99;
+    --clr-primary-9: #002966;
+    --clr-primary-10: #001433;
+    --clr-primary-11: #000e24;
+
+    --clr-grey-1: hsla(216, 100%, 95%);
+    --clr-grey-2: hsla(216, 100%, 90%);
+    --clr-grey-3: hsla(216, 100%, 80%);
+    --clr-grey-4: hsla(216, 100%, 70%);
+    --clr-grey-5: hsla(216, 100%, 60%); 
+    --clr-grey-6: hsla(216, 100%, 50%);
+    --clr-grey-7: hsla(216, 100%, 40%);
+    --clr-grey-8: hsla(216, 100%, 30%);
+    --clr-grey-9: hsla(216, 100%, 20%);
+    --clr-grey-10: hsla(216, 100%, 10%);
+    --clr-grey-11: hsla(216, 100%, 7.5%);
+
+    --clr-white:#fff;
+    --clr-black:#222;
+    --clr--lightblack: #4A5568;
+    --clr--box-shadow: 0 2px 8px #4A5568;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.companyrecruitment{
+    background: var(--clr-primary-3);
+    padding: 5rem 8rem;
+    padding-top: 7rem;
+    padding-bottom: 8rem;
+    
+    h2{
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: var(--clr-primary-9);
+        font-weight: 700;
+    }
+    
+    .companytitlep1{
+        font-size: 1.5rem;
+        color: var(--clr-primary-8);
+        max-width: 880px;
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+    .companytitlep2{
+        font-size: 1.25rem;
+        color: var(--clr-primary-8);
+        max-width: 880px;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        a{
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--clr-primary-2);
+        &:hover{
+            color: var(--clr-primary-7);
+        }
+    }
+    }
+    
+    .companyjob{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        .bg{
+            background: var(--clr-primary-1);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 12px rgba(0, 31, 63, 0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 31, 63, 0.12);
+                background: var(--clr-white);
+            }
+            
+            h3{
+                font-size: 1.5rem;
+                color: var(--clr-primary-7);
+                font-weight: 600;
+                margin-bottom: 12px;
+                line-height: 1.4;
+                height: 3.5rem;
+            }
+            
+            h4{
+                font-size: 1.1rem;
+                color: var(--clr-primary-6);
+                margin-bottom: 18px;
+                font-weight: 500;
+                padding-bottom: 8px;
+                border-bottom: 1px solid var(--clr-primary-2);
+            }
+            
+            p:first-of-type {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--clr-primary-8);
+                font-size: 1rem;
+                margin-bottom: 10px;
+                
+                i {
+                    color: var(--clr-primary-5);
+                    font-size: 1.1rem;
+                }
+            }
+            
+            .workingmode{
+                color: var(--clr-primary-7);
+                font-size: 1rem;
+                margin-bottom: 10px;
+                font-weight: 500;
+                
+                display: inline-block;
+                padding: 4px 12px;
+                background: var(--clr-primary-2);
+                border-radius: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .monsalar{
+                color: var(--clr-primary-9);
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            
+            .requirement{
+                p{
+                    font-size: 1.1rem;
+                    color: var(--clr-primary-8);
+                    font-weight: 600;
+                    margin-bottom: 12px;
+                    
+                    i {
+                        margin-right: 5px;
+                        color: var(--clr-primary-5);
+                    }
+                }
+                
+                ul{
+                    list-style: none;
+                    padding-left: 0;
+                    
+                    li{
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 8px;
+                        color: var(--clr-primary-7);
+                        font-size: 1rem;
+                        line-height: 1.6;
+                        margin-bottom: 8px;
+                        
+                        i {
+                            color: var(--clr-primary-5);
+                            margin-top: 4px;
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .companyrecruitment {
+        padding: 4rem 6rem;
+        padding-top: 6rem;
+        padding-bottom: 7rem;
+        h2 {
+            font-size: 2.75rem;
+        }
+        .companytitlep1 {
+            font-size: 1.4rem;
+        }
+        .companytitlep2 {
+            font-size: 1.2rem;
+        }
+        .companyjob {
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px;
+            .bg {
+                padding: 1.8rem 2.2rem;
+                h3 {
+                    font-size: 1.5rem;
+                }
+                h4 {
+                    font-size: 1.05rem;
+                }
+                .monsalar {
+                    font-size: 1.05rem;
+                }
+                .requirement p {
+                    font-size: 1.05rem;
+                }
+                .requirement ul li {
+                    font-size: 0.95rem;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 992px) {
+    .companyrecruitment {
+        padding: 3.5rem 4rem;
+        padding-top: 5.5rem;
+        padding-bottom: 6.5rem;
+        h2 {
+            font-size: 2.5rem;
+        }
+        .companytitlep1 {
+            font-size: 1.3rem;
+            max-width: 750px;
+        }
+        .companytitlep2 {
+            font-size: 1.15rem;
+            max-width: 750px;
+        }
+        .companyjob {
+            gap: 20px;
+            .bg {
+                padding: 1.7rem 2rem;
+                h3 {
+                    font-size: 1.4rem;
+                }
+                .workingmode {
+                    font-size: 0.95rem;
+                    padding: 3px 10px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .companyrecruitment {
+        padding: 3rem 2.5rem;
+        padding-top: 5rem;
+        padding-bottom: 6rem;
+        h2 {
+            font-size: 2.25rem;
+        }
+        .companytitlep1,
+        .companytitlep2 {
+            font-size: 1.2rem;
+            max-width: 100%;
+        }
+        .companytitlep2 {
+            margin-bottom: 1.5rem;
+        }
+        .companyjob {
+            grid-template-columns: 1fr;
+            gap: 20px;
+
+            .bg {
+                padding: 1.8rem 2rem;
+                max-width: 500px;
+                margin: 0 auto;
+                h3 {
+                    font-size: 1.45rem;
+                    text-align: center;
+                }
+                h4 {
+                    font-size: 1rem;
+                    text-align: center;
+                    border-bottom: 1px solid var(--clr-primary-3);
+                }
+                p:first-of-type {
+                    justify-content: center;
+                    font-size: 0.95rem;
+                }
+                .workingmode {
+                    display: block;
+                    text-align: center;
+                    width: fit-content;
+                    margin: 0 auto 15px;
+                }
+                .monsalar {
+                    text-align: center;
+                    font-size: 1.1rem;
+                }
+                .requirement p {
+                    text-align: center;
+                    font-size: 1rem;
+                }
+                .requirement ul {
+                    padding-left: 1rem;
+                }
+                .requirement ul li {
+                    font-size: 0.95rem;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 480px) {
+    .companyrecruitment {
+        padding: 2.5rem 1.5rem;
+        padding-top: 4.5rem;
+        padding-bottom: 5.5rem;
+        h2 {
+            font-size: 2rem;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+        .companytitlep1 {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
+        }
+        .companytitlep2 {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+        .companyjob {
+        gap: 18px;
+            .bg {
+                padding: 1.5rem 1.8rem;
+                max-width: 100%;
+                h3 {
+                    font-size: 1.3rem;
+                    margin-bottom: 10px;
+                }
+                h4 {
+                    font-size: 0.95rem;
+                    margin-bottom: 15px;
+                    padding-bottom: 6px;
+                }
+                p:first-of-type {
+                    font-size: 0.9rem;
+                    gap: 6px;
+                    i {
+                        font-size: 1rem;
+                    }
+                }
+                .workingmode {
+                    font-size: 0.9rem;
+                    padding: 2px 8px;
+                    margin-bottom: 12px;
+                }
+                .monsalar {
+                    font-size: 1rem;
+                    margin-bottom: 15px;
+                }
+                .requirement p {
+                    font-size: 0.95rem;
+                    margin-bottom: 10px;
+                }
+                .requirement ul li {
+                    font-size: 0.9rem;
+                    line-height: 1.5;
+                    gap: 6px;
+                    i {
+                        margin-top: 3px;
+                        font-size: 0.85rem;
+                    }
+                }
+            }
+        }
+    }
+}
