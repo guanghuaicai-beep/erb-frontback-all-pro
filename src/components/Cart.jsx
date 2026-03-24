@@ -16,7 +16,7 @@ const Cart = ({ setCartCount }) => {
       alert("Please Login");
       return;
     }
-    axios.post("http://localhost:8081/cart/add", 
+    axios.post("https://channing-dichasial-marissa.ngrok-free.dev/cart/add", 
       { courseId, quantity },
       { headers: { Authorization: `Bearer ${token}` } }
     )
@@ -31,7 +31,7 @@ const Cart = ({ setCartCount }) => {
       alert("Please Login");
       return;
     }
-    axios.get("http://localhost:8081/cart", {
+    axios.get("https://channing-dichasial-marissa.ngrok-free.dev/cart", {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => {
@@ -50,7 +50,7 @@ const Cart = ({ setCartCount }) => {
 
   const handleIncrease = (id) => {
     const item = cartItems.find(i => i.id === id);
-    axios.put(`http://localhost:8081/cart/update/${id}?quantity=${item.quantity + 1}`, {}, {
+    axios.put(`https://channing-dichasial-marissa.ngrok-free.dev/cart/update/${id}?quantity=${item.quantity + 1}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(() => refreshCart())
@@ -60,7 +60,7 @@ const Cart = ({ setCartCount }) => {
   const handleDecrease = (id) => {
     const item = cartItems.find(i => i.id === id);
     if (item.quantity > 1) {
-      axios.put(`http://localhost:8081/cart/update/${id}?quantity=${item.quantity - 1}`, {}, {
+      axios.put(`https://channing-dichasial-marissa.ngrok-free.dev/cart/update/${id}?quantity=${item.quantity - 1}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(() => refreshCart())
@@ -73,7 +73,7 @@ const Cart = ({ setCartCount }) => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8081/cart/${id}`, {
+    axios.delete(`https://channing-dichasial-marissa.ngrok-free.dev/cart/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(() => {
@@ -84,7 +84,7 @@ const Cart = ({ setCartCount }) => {
   };
 
   const handleClearAll = () => {
-    axios.delete("http://localhost:8081/cart/clear", {
+    axios.delete("https://channing-dichasial-marissa.ngrok-free.dev/cart/clear", {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(() => {
