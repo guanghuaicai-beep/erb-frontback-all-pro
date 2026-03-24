@@ -38,7 +38,7 @@
 .wishlist-container {
   width: 80vw;
   min-width: 432px;
-  margin: 6rem auto;
+  margin: 7rem auto;
   padding: 1.5rem;
   background: var(--clr-white);
   border-radius: 1rem;
@@ -219,7 +219,7 @@ button {
 @media (max-width: 1200px) {
   .wishlist-container {
     width: 90vw;
-    margin: 4rem auto;
+    margin: 7rem auto;
     padding: 1.25rem;
     h2 {
       font-size: 2.5rem;
@@ -271,7 +271,7 @@ button {
 @media (max-width: 1024px) {
   .wishlist-container {
     width: 92vw;
-    margin: 3rem auto;
+    margin: 7rem auto;
     padding: 1rem;
     h2 {
       font-size: 2.2rem; 

@@ -16,6 +16,8 @@ import com.nick.myApp.repos.CoursesRepo;
 import com.nick.myApp.repos.UsersRepo;
 import com.nick.myApp.repos.WishListRepo;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/wishlist")
@@ -88,13 +90,13 @@ public class WishListController {
     // 加入 wishlist
     @PostMapping("/add")
     public ResponseEntity<?> addToWishlist(@RequestBody WishListRequest request,
-                                           Authentication authentication) {
+            Authentication authentication) {
         Users user = getUser(authentication);
         Integer courseId = request.getCourseId();
 
         if (wishListRepo.findByUser_IdAndCourse_Id(user.getId(), courseId).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                                 .body("Course already exists in wishlist");
+                    .body("Course already exists in wishlist");
         }
 
         Courses course = coursesRepo.findById(courseId)
@@ -110,14 +112,15 @@ public class WishListController {
 
     // 從 wishlist 移除課程
     @DeleteMapping("/{courseId}")
+    @Transactional
     public ResponseEntity<String> removeFromWishlist(@PathVariable Integer courseId,
-                                                     Authentication authentication) {
+            Authentication authentication) {
         Users user = getUser(authentication);
 
         boolean exists = wishListRepo.existsByUser_IdAndCourse_Id(user.getId(), courseId);
         if (!exists) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("Course not found in wishlist");
+                    .body("Course not found in wishlist");
         }
 
         wishListRepo.deleteByUser_IdAndCourse_Id(user.getId(), courseId);

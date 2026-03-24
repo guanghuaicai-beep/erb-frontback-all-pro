@@ -8,9 +8,9 @@ const WishList = () => {
   const [message, setMessage] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]); 
   const [compareData, setCompareData] = useState([]); 
-  const [isCompareShown, setIsCompareShown] = useState(false); // 控制对比显示/收起状态
+  const [isCompareShown, setIsCompareShown] = useState(false);
 
-  // 取得 wishlist (from DB)
+  // 取得願望清單
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -33,7 +33,7 @@ const WishList = () => {
       });
   }, []);
 
-  // 选中数变化时，自动重置对比状态
+  // 選擇變更時重置對比
   useEffect(() => {
     if (selectedCourses.length < 2) {
       setCompareData([]);
@@ -41,7 +41,7 @@ const WishList = () => {
     }
   }, [selectedCourses]);
 
-  // remove wishlist item
+  // ✅ 刪除功能（完全對齊後端接口）
   const handleRemove = (courseId) => {
     const token = localStorage.getItem("token");
     axios.delete(`http://localhost:8081/wishlist/${courseId}`, {
@@ -53,13 +53,13 @@ const WishList = () => {
         setTimeout(() => setMessage(""), 3000);
       })
       .catch(err => {
-        console.error("Remove error:", err);
+        console.error("Remove error:", err.response?.data || err);
         setMessage("❌ Failed to remove course");
         setTimeout(() => setMessage(""), 3000);
       });
   };
 
-  // 勾選 compare checkbox
+  // 勾選對比課程
   const handleCompareSelect = (courseId) => {
     if (selectedCourses.includes(courseId)) {
       setSelectedCourses(selectedCourses.filter(id => id !== courseId));
@@ -73,14 +73,12 @@ const WishList = () => {
     }
   };
 
-  // ✅ 核心修改：切换对比显示/收起（复用原按钮）
+  // 顯示 / 隱藏對比
   const toggleCompare = () => {
     if (isCompareShown) {
-      // 收起对比：清空数据 + 标记为隐藏
       setCompareData([]);
       setIsCompareShown(false);
     } else {
-      // 显示对比：调用API + 标记为显示
       const token = localStorage.getItem("token");
       axios.get(`http://localhost:8081/wishlist/compare?courseId1=${selectedCourses[0]}&courseId2=${selectedCourses[1]}`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -98,7 +96,7 @@ const WishList = () => {
 
   return (
     <div className="wishlist-container">
-      <h2><i className="fa-solid fa-heart"></i>My Favourite<i className="fa-solid fa-heart"></i></h2>
+      <h2><i className="fa-solid fa-heart"></i> My Favourite <i className="fa-solid fa-heart"></i></h2>
 
       {message && (
         <div className={`notification ${message.startsWith("❌") ? "error" : "success"}`}>
@@ -115,7 +113,7 @@ const WishList = () => {
           <table className="wishlist-table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>Course ID</th>
                 <th>Course Name</th>
                 <th>Action</th>
                 <th>Compare</th>
@@ -124,10 +122,13 @@ const WishList = () => {
             <tbody>
               {wishlist.map(item => (
                 <tr key={item.id}>
-                  <td>{item.id}</td>
+                  <td>{item.course.id}</td>
                   <td>{item.course.courseName}</td>
                   <td>
-                    <button className="btn-remove" onClick={() => handleRemove(item.course.id)}>Remove</button>
+                    {/* ✅ 正確傳入 course.id */}
+                    <button className="btn-remove" onClick={() => handleRemove(item.course.id)}>
+                      Remove
+                    </button>
                   </td>
                   <td>
                     <input
@@ -141,14 +142,12 @@ const WishList = () => {
             </tbody>
           </table>
 
-          {/* ✅ 复用原按钮：根据状态切换文字 + 实现显示/收起 */}
           {selectedCourses.length === 2 && (
             <button className="btn-compare" onClick={toggleCompare}>
               {isCompareShown ? "Hide Comparison" : "Compare Selected Courses"}
             </button>
           )}
 
-          {/* ✅ 对比内容：仅选中2个课程 + 显示状态为true + 有数据时才显示 */}
           {selectedCourses.length === 2 && isCompareShown && compareData.length === 2 && (
             <div className="compare-container">
               <h3 className="compare-heading">📊 Course Comparison</h3>
@@ -170,7 +169,7 @@ const WishList = () => {
                   <tr><td>Start Time</td><td>{compareData[0].time}</td><td>{compareData[1].time}</td></tr>
                   <tr><td>Capacity</td><td>{compareData[0].capacity}</td><td>{compareData[1].capacity}</td></tr>
                   <tr><td>Status</td><td>{compareData[0].status}</td><td>{compareData[1].status}</td></tr>
-                <tr><td>Description</td><td>{compareData[0].description}</td><td>{compareData[1].description}</td></tr>
+                  <tr><td>Description</td><td>{compareData[0].description}</td><td>{compareData[1].description}</td></tr>
                 </tbody>
               </table>
             </div>
