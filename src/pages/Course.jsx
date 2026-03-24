@@ -27,7 +27,7 @@ const Course = () => {
 
         try {
         await axios.post(
-            `https://channing-dichasial-marissa.ngrok-free.dev/cart/add/${courseId}?quantity=1`,
+            `http://localhost:8081/cart/add/${courseId}?quantity=1`,
             {},
             { headers: { Authorization: `Bearer ${token}` } }
         );

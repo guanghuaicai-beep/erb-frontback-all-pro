@@ -19,7 +19,7 @@ const WishList = () => {
       return;
     }
 
-    axios.get("https://channing-dichasial-marissa.ngrok-free.dev/wishlist", {
+    axios.get("http://localhost:8081/wishlist", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
@@ -44,7 +44,7 @@ const WishList = () => {
   // ✅ 刪除功能（完全對齊後端接口）
   const handleRemove = (courseId) => {
     const token = localStorage.getItem("token");
-    axios.delete(`https://channing-dichasial-marissa.ngrok-free.dev/wishlist/${courseId}`, {
+    axios.delete(`http://localhost:8081/wishlist/${courseId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
@@ -80,7 +80,7 @@ const WishList = () => {
       setIsCompareShown(false);
     } else {
       const token = localStorage.getItem("token");
-      axios.get(`https://channing-dichasial-marissa.ngrok-free.dev/wishlist/compare?courseId1=${selectedCourses[0]}&courseId2=${selectedCourses[1]}`, {
+      axios.get(`http://localhost:8081/wishlist/compare?courseId1=${selectedCourses[0]}&courseId2=${selectedCourses[1]}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => {

@@ -28,7 +28,7 @@ const Checkout = () => {
       return Object.values(grouped);
     };
 
-    axios.get("https://channing-dichasial-marissa.ngrok-free.dev/cart", {
+    axios.get("http://localhost:8081/cart", {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => {

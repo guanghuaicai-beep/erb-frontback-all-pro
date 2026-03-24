@@ -39,7 +39,7 @@ const ResetPassword = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const res = await axios.post("https://channing-dichasial-marissa.ngrok-free.dev/reset_password", {
+        const res = await axios.post("http://localhost:8081/reset_password", {
           method,
           email,
           username,

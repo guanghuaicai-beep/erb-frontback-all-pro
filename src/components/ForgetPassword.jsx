@@ -37,7 +37,7 @@ const ForgetPassword = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const res = await axios.post("https://channing-dichasial-marissa.ngrok-free.dev/forget_password", {
+        const res = await axios.post("http://localhost:8081/forget_password", {
           method, email, username
         });
         alert("✅ Password reset link has been sent, please check your email");
