@@ -95,7 +95,7 @@ const SignUp = () => {
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
       try {
-        const res = await axios.post("http://localhost:8081/register", {
+        const res = await axios.post("https://channing-dichasial-marissa.ngrok-free.dev/register", {
           firstname,
           lastname,
           email,
