@@ -1,6 +1,5 @@
 package com.nick.myApp.config;
 
-import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import static org.springframework.security.config.Customizer.withDefaults;
 import com.nick.myApp.models.Users;
 import com.nick.myApp.repos.UsersRepo;
 
@@ -25,6 +24,7 @@ import com.nick.myApp.repos.UsersRepo;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // 🔥 只注入 UsersRepo，不注入 JwtFilter → 解除循环依赖！
     private final UsersRepo usersRepo;
 
     public SecurityConfig(UsersRepo usersRepo) {
@@ -32,30 +32,30 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter)
+            throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> {})
-            .authorizeHttpRequests(auth -> auth
-                // 公開 API
-                .requestMatchers(HttpMethod.POST, "/register").permitAll()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/logout").permitAll()
-                .requestMatchers(HttpMethod.POST, "/forget_password").permitAll()
-                .requestMatchers(HttpMethod.POST, "/reset_password").permitAll()
-                .requestMatchers(HttpMethod.GET, "/courses/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/categories/**").permitAll()
-                .requestMatchers("/error").permitAll()
-                // 需要登入
-                .requestMatchers("/cart/**").authenticated()
-                .requestMatchers("/orders/**").authenticated()
-                .anyRequest().authenticated()
-            )
-            .sessionManagement(session -> 
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            // 加入 JWT filter，但要排除 login/register
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .csrf(csrf -> csrf.disable())
+                .cors(withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/logout").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/forget_password").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/reset_password").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/courses/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/categories/**").permitAll()
+                        .requestMatchers("/error").permitAll()
+
+                        // 🔥 需要登录
+                        .requestMatchers("/wishlist/**").authenticated()
+                        .requestMatchers("/cart/**").authenticated()
+                        .requestMatchers("/orders/**").authenticated()
+
+                        .anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -70,6 +70,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    // 登录用
     @Bean
     public UserDetailsService userDetailsService() {
         return identifier -> {
@@ -77,16 +78,11 @@ public class SecurityConfig {
             if (userOpt.isEmpty()) {
                 userOpt = usersRepo.findByMobile(identifier);
             }
-
-            Users user = userOpt.orElseThrow(
-                () -> new UsernameNotFoundException("User not found: " + identifier)
-            );
-
+            Users user = userOpt.orElseThrow(() -> new UsernameNotFoundException("User not found: " + identifier));
             return new org.springframework.security.core.userdetails.User(
-                identifier, // email 或 mobile
-                user.getPassword(), // 加密密碼
-                Collections.emptyList()
-            );
+                    identifier,
+                    user.getPassword(),
+                    java.util.Collections.emptyList());
         };
     }
 }

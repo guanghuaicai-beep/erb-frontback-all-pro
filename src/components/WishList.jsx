@@ -10,6 +10,16 @@ const WishList = () => {
   const [compareData, setCompareData] = useState([]); 
   const [isCompareShown, setIsCompareShown] = useState(false);
 
+  const BASE_URL = "https://channing-dichasial-marissa.ngrok-free.dev";
+
+  const getHeaders = () => {
+    const token = localStorage.getItem("token");
+    return {
+      Authorization: `Bearer ${token}`,
+      "ngrok-skip-browser-warning": "true"
+    };
+  };
+
   // 取得願望清單
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -19,10 +29,11 @@ const WishList = () => {
       return;
     }
 
-    axios.get("https://channing-dichasial-marissa.ngrok-free.dev/wishlist", {
-      headers: { Authorization: `Bearer ${token}` }
+    axios.get(`${BASE_URL}/wishlist`, {
+      headers: getHeaders()
     })
       .then(res => {
+        console.log(res.data); // ✅ 修正 red -> res
         setWishlist(res.data);
         setLoading(false);
       })
@@ -41,11 +52,10 @@ const WishList = () => {
     }
   }, [selectedCourses]);
 
-  // ✅ 刪除功能（完全對齊後端接口）
+  // 刪除
   const handleRemove = (courseId) => {
-    const token = localStorage.getItem("token");
-    axios.delete(`https://channing-dichasial-marissa.ngrok-free.dev/wishlist/${courseId}`, {
-      headers: { Authorization: `Bearer ${token}` }
+    axios.delete(`${BASE_URL}/wishlist/${courseId}`, {
+      headers: getHeaders()
     })
       .then(() => {
         setMessage("✅ Course removed from wishlist");
@@ -79,15 +89,16 @@ const WishList = () => {
       setCompareData([]);
       setIsCompareShown(false);
     } else {
-      const token = localStorage.getItem("token");
-      axios.get(`https://channing-dichasial-marissa.ngrok-free.dev/wishlist/compare?courseId1=${selectedCourses[0]}&courseId2=${selectedCourses[1]}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
+      axios.get(
+        `${BASE_URL}/wishlist/compare?courseId1=${selectedCourses[0]}&courseId2=${selectedCourses[1]}`,
+        { headers: getHeaders() }
+      )
         .then(res => {
           setCompareData(res.data);
           setIsCompareShown(true);
         })
         .catch(err => {
+          console.error(err);
           setMessage("❌ Failed to compare courses");
           setTimeout(() => setMessage(""), 3000);
         });
@@ -96,7 +107,7 @@ const WishList = () => {
 
   return (
     <div className="wishlist-container">
-      <h2><i className="fa-solid fa-heart"></i> My Favourite <i className="fa-solid fa-heart"></i></h2>
+      <h2>❤️ My Favourite ❤️</h2>
 
       {message && (
         <div className={`notification ${message.startsWith("❌") ? "error" : "success"}`}>
@@ -125,7 +136,6 @@ const WishList = () => {
                   <td>{item.course.id}</td>
                   <td>{item.course.courseName}</td>
                   <td>
-                    {/* ✅ 正確傳入 course.id */}
                     <button className="btn-remove" onClick={() => handleRemove(item.course.id)}>
                       Remove
                     </button>
@@ -150,7 +160,7 @@ const WishList = () => {
 
           {selectedCourses.length === 2 && isCompareShown && compareData.length === 2 && (
             <div className="compare-container">
-              <h3 className="compare-heading">📊 Course Comparison</h3>
+              <h3>📊 Course Comparison</h3>
               <table className="compare-table">
                 <thead>
                   <tr>

@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 public class LoginController {
-    
+
     private final AuthenticationManager authenticationManager;
     private final UsersRepo usersRepo;
 
@@ -40,63 +40,55 @@ public class LoginController {
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secretKey.getBytes());
     }
-@PostMapping
-public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-    try {
-        // 驗證帳號密碼
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                request.getIdentifier(),
-                request.getPassword()
-            )
-        );
 
-        String identifier = authentication.getName();
-        System.out.println("Identifier from authentication: " + identifier);
+    @PostMapping
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        try {
+            // 驗證帳號密碼
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getIdentifier(),
+                            request.getPassword()));
 
-        // 判斷係 email 定 mobile
-        Users user;
-        if (identifier.contains("@")) {
-            user = usersRepo.findByEmailIgnoreCase(identifier)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        } else {
-            user = usersRepo.findByMobile(identifier)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            String identifier = authentication.getName();
+            System.out.println("Identifier from authentication: " + identifier);
+
+            // 判斷係 email 定 mobile
+            Users user;
+            if (identifier.contains("@")) {
+                user = usersRepo.findByEmailIgnoreCase(identifier)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            } else {
+                user = usersRepo.findByMobile(identifier)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            }
+
+            // 生成 JWT
+            long expirationTime = expirationDays * 24 * 60 * 60 * 1000L;
+            Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
+
+            String jwt = Jwts.builder()
+                    .setSubject(identifier)
+                    .claim("firstname", user.getFirstname())
+                    .setIssuedAt(new Date())
+                    .setExpiration(expirationDate)
+                    .signWith(getSigningKey())
+                    .compact();
+
+            return ResponseEntity.ok(Map.of(
+                    "message", "Login Successful",
+                    "token", jwt,
+                    "firstname", user.getFirstname(),
+                    "welcome", "Welcome, " + user.getFirstname()));
+
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body(Map.of("Error", "Invalid email, mobile or password"));
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(404).body(Map.of("Error", "User not found"));
+        } catch (Exception e) {
+            e.printStackTrace(); // Debug log
+            return ResponseEntity.status(500).body(Map.of("Error", "Internal Server Error"));
         }
-
-        // 生成 JWT
-        long expirationTime = expirationDays * 24 * 60 * 60 * 1000L;
-        Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
-
-        String jwt = Jwts.builder()
-                .setSubject(identifier)
-                .claim("firstname", user.getFirstname())
-                .setIssuedAt(new Date())
-                .setExpiration(expirationDate)
-                .signWith(getSigningKey())
-                .compact();
-
-        return ResponseEntity.ok(Map.of(
-                "message", "Login Successful",
-                "token", jwt,
-                "firstname" , user.getFirstname(),
-                "welcome", "Welcome, " + user.getFirstname()
-        ));
-
-    } catch (BadCredentialsException e) {
-        return ResponseEntity.status(401).body(Map.of("Error", "Invalid email, mobile or password"));
-    } catch (UsernameNotFoundException e) {
-        return ResponseEntity.status(404).body(Map.of("Error", "User not found"));
-    } catch (Exception e) {
-        e.printStackTrace(); // Debug log
-        return ResponseEntity.status(500).body(Map.of("Error", "Internal Server Error"));
     }
+
 }
-
-
-
-    
-}
-
-
-

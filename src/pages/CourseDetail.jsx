@@ -28,7 +28,7 @@ const CourseDetail = () => {
         return;
         }
 
-        axios.post("https://channing-dichasial-marissa.ngrok-free.dev/cart/add",
+        axios.post("http://localhost:8081/cart/add",
         { courseId: currentCourse.id, quantity: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
         )
@@ -44,6 +44,8 @@ const CourseDetail = () => {
 
     // add to wishlist
     const handleAddToFavorite = () => {
+        console.log("🔥 currentCourse:", currentCourse);
+        console.log("🔥 courseId:", currentCourse.id);
         const token = localStorage.getItem("token");
         if (!token) {
         alert("❌ Please Login");
