@@ -8,6 +8,13 @@ const Checkout = () => {
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
+  const getHeaders = () => {
+    const token = localStorage.getItem("token");
+    return {
+      Authorization: `Bearer ${token}`,
+      "ngrok-skip-browser-warning": "true"
+    };
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -29,7 +36,7 @@ const Checkout = () => {
     };
 
     axios.get("https://channing-dichasial-marissa.ngrok-free.dev/cart", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: getHeaders()
     })
     .then(res => {
       const groupItems = groupCartItems(res.data.items);

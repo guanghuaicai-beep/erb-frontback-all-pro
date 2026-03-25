@@ -8,10 +8,39 @@ const Cart = ({ setCartCount }) => {
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
+  const BASE_URL = "https://channing-dichasial-marissa.ngrok-free.dev";
+
+  const getHeaders = () => {
+    const token = localStorage.getItem("token");
+    return {
+      Authorization: `Bearer ${token}`,
+      "ngrok-skip-browser-warning": "true"
+    };
+  };
+  // const token = localStorage.getItem("token");
+  // console.log("TOKEN:", token);
+  const refreshCart = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please Login");
+      return;
+    }
+    axios.get("https://channing-dichasial-marissa.ngrok-free.dev/cart", {
+      headers: getHeaders()
+    })
+    .then(res => {
+      console.log(res.data);
+      setCartItems(res.data.items);
+      // setCartCount(res.data.items.length);
+      setTotal(res.data.total);
+    })
+    .catch(err => {
+      console.error("Cart error:", err.response?.data || err.message);
+    });
+  };
 
   const addToCart = (courseId, quantity = 1) => {
-    const token = localStorage.getItem("token");
+    headers: getHeaders()
     if (!token) {
       alert("Please Login");
       return;
@@ -26,24 +55,7 @@ const Cart = ({ setCartCount }) => {
     .catch(err => console.error("Add to cart error:", err.response?.data || err.message));
   };
 
-  const refreshCart = () => {
-    if (!token) {
-      alert("Please Login");
-      return;
-    }
-    axios.get("https://channing-dichasial-marissa.ngrok-free.dev/cart", {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => {
-      setCartItems(res.data.items);
-      // setCartCount(res.data.items.length);
-      setTotal(res.data.total);
-    })
-    .catch(err => {
-      console.error("Cart error:", err.response?.data || err.message);
-    });
-  };
-
+  
   useEffect(() => {
     refreshCart();
   }, []);
@@ -51,7 +63,7 @@ const Cart = ({ setCartCount }) => {
   const handleIncrease = (id) => {
     const item = cartItems.find(i => i.id === id);
     axios.put(`https://channing-dichasial-marissa.ngrok-free.dev/cart/update/${id}?quantity=${item.quantity + 1}`, {}, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: getHeaders()
     })
     .then(() => refreshCart())
     .catch(err => console.error("Increase error:", err));
@@ -61,7 +73,7 @@ const Cart = ({ setCartCount }) => {
     const item = cartItems.find(i => i.id === id);
     if (item.quantity > 1) {
       axios.put(`https://channing-dichasial-marissa.ngrok-free.dev/cart/update/${id}?quantity=${item.quantity - 1}`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: getHeaders()
       })
       .then(() => refreshCart())
       .catch(err => console.error("Decrease error:", err));
@@ -74,7 +86,7 @@ const Cart = ({ setCartCount }) => {
 
   const handleDelete = (id) => {
     axios.delete(`https://channing-dichasial-marissa.ngrok-free.dev/cart/${id}`, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: getHeaders()
     })
     .then(() => {
       refreshCart();
@@ -85,7 +97,7 @@ const Cart = ({ setCartCount }) => {
 
   const handleClearAll = () => {
     axios.delete("https://channing-dichasial-marissa.ngrok-free.dev/cart/clear", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: getHeaders()
     })
     .then(() => {
       //  console.log("Cart API 返回数据：", res.data); // 调试日志：查看返回结构

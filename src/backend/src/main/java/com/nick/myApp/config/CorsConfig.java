@@ -3,7 +3,6 @@ package com.nick.myApp.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.*;
-import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
@@ -11,28 +10,36 @@ import java.util.List;
 public class CorsConfig {
 
     @Bean
-    public CorsFilter corsFilter() {
+    public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
 
+        // 允許帶 token（Authorization）
         config.setAllowCredentials(true);
 
-        // 🔥 支援 localhost + ngrok
+        // ✅ 允許的前端來源（不要用 "*"）
         config.setAllowedOriginPatterns(List.of(
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "https://*.ngrok-free.dev",
-                "*"));
+                "https://*.ngrok-free.dev"));
 
+        // 允許所有 header（包含 Authorization）
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        // 🔥 很重要（不然 preflight 會 fail）
+        // 允許所有 HTTP 方法
+        config.setAllowedMethods(List.of(
+                "GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+        // 讓前端可以讀到 Authorization
         config.setExposedHeaders(List.of("Authorization"));
 
+        // （可選）預檢請求快取 1 小時
+        config.setMaxAge(3600L);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
         source.registerCorsConfiguration("/**", config);
 
-        return new CorsFilter(source);
+        return source;
     }
 }
