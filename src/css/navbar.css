@@ -160,6 +160,57 @@ ul{
     font-size: 0.7rem;
 }
 
+
+/* 購物車 badge */
+.cart-container {
+    position: relative;
+    display: inline-block;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.cart-container i {
+    color: #fff;
+    /*opacity: 1;*/
+}
+
+.cart-badge,.heart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 4px;
+    font-size: 10px;
+    font-weight: bold;
+    transform-origin: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.heart-container {
+    position: relative;
+    display: inline-block;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.heart-container i {
+    color: #fff;
+    /*opacity: 1;*/
+}
+
+@keyframes badge-bounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.4); }
+    60%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.cart-badge.animate, .heart-badge.animate{
+    animation: badge-bounce 0.4s ease;
+}
+
 @media (min-width:1000px) and (max-width:1188px){
     .navbar{
         .main-burger{
@@ -269,4 +320,5 @@ ul{
         display: none;
     }
 }
+
 

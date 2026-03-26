@@ -31,7 +31,7 @@ const Cart = ({ setCartCount }) => {
     .then(res => {
       console.log(res.data);
       setCartItems(res.data.items);
-      // setCartCount(res.data.items.length);
+      setCartCount(res.data.items.length);
       setTotal(res.data.total);
     })
     .catch(err => {
@@ -81,7 +81,7 @@ const Cart = ({ setCartCount }) => {
   };
 
   const handleCheckout = () => {
-    navigate("/checkout");
+    navigate("/checkout",{state:{cartItems,total}});
   };
 
   const handleDelete = (id) => {
@@ -109,6 +109,9 @@ const Cart = ({ setCartCount }) => {
     .catch(err => console.error("Clear error:", err));
   };
 
+  const handleViewHistory = () =>{
+    navigate("/orderhistory")
+  }
   return (
     <div className="cart-table-center">
       <div className="cart-container-table">
@@ -157,6 +160,7 @@ const Cart = ({ setCartCount }) => {
         <div className="cart-actions">
           <button className="cartuniversalbtn cartbtn cartbtn-checkout" onClick={handleCheckout}>Checkout</button>
           <button className="cartuniversalbtn cartbtn cartbtn-clear" onClick={handleClearAll}>Clear All</button>
+          <button className="cartuniversalbtn cartbtn cartbtn-clear" onClick={handleViewHistory}>View Order History</button>
         </div>
         </>
         )}

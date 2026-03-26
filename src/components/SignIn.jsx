@@ -59,6 +59,7 @@ const SignIn = () => {
 
     // 儲存 JWT
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("identifier",res.data.identifier);
     localStorage.setItem("firstname", res.data.firstname);
 
     // 後端回傳 welcome message，可以直接用
@@ -219,6 +220,10 @@ const SignIn = () => {
 
         <div className="options">
           <Link to="/forget-password">Forget password?</Link>
+        </div>
+
+        <div className="options">
+          <Link to="/reset-password">Reset password?</Link>
         </div>
 
         <button type="submit" className="btn-signin" disabled={isLoading}>

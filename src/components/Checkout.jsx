@@ -7,6 +7,7 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
+  const [selectedMethod,setSelectedMethod] = useState("VISA");
 
   const getHeaders = () => {
     const token = localStorage.getItem("token");
@@ -51,8 +52,26 @@ const Checkout = () => {
   }, []);
 
   const handleConfirmOrder = () => {
-    navigate("/payment", { state: { total } });
+    const token = localStorage.getItem("token");
+    axios.post("https://channing-dichasial-marissa.ngrok-free.dev/cart/checkout", {
+      paymentMethod: selectedMethod
+    }, {
+      headers: getHeaders()
+    })
+    .then(res => {
+      alert("✅ " + res.data.message);
+      const orderId = res.data.orderId;
+      // ✅ navigate 去 Payment 時帶埋 cartItems 同 total
+      navigate("/payment", { state: { orderId, total, cartItems,selectedMethod } });
+    })
+    .catch(err => {
+      alert("❌ Checkout failed: " + (err.response?.data?.message || err.message));
+    });
   };
+
+  // const handleConfirmOrder = () => {
+  //   navigate("/payment", { state: { total } });
+  // };
 
   return (
     <div className="checkout-container">

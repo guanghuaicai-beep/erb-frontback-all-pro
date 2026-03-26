@@ -78,6 +78,7 @@ public class LoginController {
             return ResponseEntity.ok(Map.of(
                     "message", "Login Successful",
                     "token", jwt,
+                    "identifier", identifier, // 👈 加返呢個
                     "firstname", user.getFirstname(),
                     "welcome", "Welcome, " + user.getFirstname()));
 

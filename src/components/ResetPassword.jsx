@@ -53,17 +53,17 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="glass-card p-4 p-md-5">
-      <div className="logo">
-        <span className="logo-icon">📘</span>
+    <div className="reset-password-glass-card p-4 p-md-5">
+      <div className="reset-password-logo">
+        <span className="reset-password-logo-icon">📘</span>
         <span>Course</span>
       </div>
 
-      <h2 className="form-title line-simple-2">Reset Password</h2>
+      <h2 className="reset-password-form-title reset-password-line-simple-2">Reset Password</h2>
 
       <form onSubmit={handleSubmit} noValidate>
         {/* Login Method */}
-        <div className="login-method mb-4">
+        <div className="reset-password-login-method mb-4">
           <label>
             <input
               type="radio"
@@ -86,13 +86,13 @@ const ResetPassword = () => {
 
         {/* Email */}
         {method === "email" && (
-          <div id="email-group" className="mb-4 login-field">
-            <div className="input-group has-validation">
-              <span className="input-group-text">✉️</span>
+          <div id="email-group" className="mb-4 reset-password-login-field">
+            <div className="reset-password-input-group has-validation">
+              <span className="reset-password-input-group-text">✉️</span>
               <input
                 type="email"
                 placeholder="Email address"
-                className={`form-control ${
+                className={`reset-password-form-control ${
                   submitted && errors.email
                     ? "is-invalid"
                     : submitted && email && !errors.email
@@ -104,20 +104,20 @@ const ResetPassword = () => {
               />
             </div>
             {submitted && errors.email && (
-              <div className="error-message">{errors.email}</div>
+              <div className="reset-password-error-message">{errors.email}</div>
             )}
           </div>
         )}
 
         {/* Username */}
         {method === "username" && (
-          <div id="mobile-group" className="mb-4 login-field">
-            <div className="input-group has-validation">
-              <span className="input-group-text">📱</span>
+          <div id="mobile-group" className="mb-4 reset-password-login-field">
+            <div className="reset-password-input-group has-validation">
+              <span className="reset-password-input-group-text">📱</span>
               <input
                 type="text"
                 placeholder="Username"
-                className={`form-control ${
+                className={`reset-password-form-control ${
                   submitted && errors.username
                     ? "is-invalid"
                     : submitted && username && !errors.username
@@ -129,43 +129,43 @@ const ResetPassword = () => {
               />
             </div>
             {submitted && errors.username && (
-              <div className="error-message">{errors.username}</div>
+              <div className="reset-password-error-message">{errors.username}</div>
             )}
           </div>
         )}
 
         {/* New Password */}
         <div className="mb-4">
-          <div className="input-group has-validation">
-            <span className="input-group-text">🔒</span>
+          <div className="reset-password-input-group has-validation">
+            <span className="reset-password-input-group-text">🔒</span>
             <input
               type={showPassword ? "text" : "newPassword"}
               placeholder="Password"
-              className={`form-control ${
+              className={`reset-password-form-control ${
                 submitted && errors.password ? "is-invalid" : submitted ? "is-valid" : ""
               }`}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
             <span
-              className="input-group-text toggle-password"
+              className="reset-password-input-group-text reset-password-toggle-password"
               onClick={() => setShowPassword(!showPassword)}
             >
               <i className={showPassword ? "fas fa-eye" : "fas fa-eye-slash"}></i>
             </span>
           </div>
           {submitted && errors.password && (
-            <div className="error-message">{errors.password}</div>
+            <div className="reset-password-error-message">{errors.password}</div>
           )}
         </div>
 
         {/* Send Button */}
-        <button type="submit" className="btn-send">
+        <button type="submit" className="reset-password-btn-send">
           Send
         </button>
 
         {/* Back to Sign In */}
-        <div className="back-link">
+        <div className="reset-password-back-link">
           <Link to="/signin">← Back to Sign In</Link>
         </div>
       </form>
@@ -173,7 +173,7 @@ const ResetPassword = () => {
       {/* Notification */}
       {notification && (
         <div
-          className={`notification show ${
+          className={`reset-password-notification show ${
             notification.startsWith("❌") ? "error" : ""
           }`}
         >

@@ -95,7 +95,8 @@ const Navbar = ({ cartCount, heartCount, cartAnimate, heartAnimate, setCartCount
                 }} 
             >
                 <i className="fa-solid fa-heart"></i>
-                {heartCount > 0 && <span className='heart-badge'>{heartCount}</span>}
+                {/* 111 */}
+                {heartCount > 0 && <span className={`heart-badge ${heartAnimate ? "animate" : ""}`}>{heartCount}</span>}
             </div>
     
             <div 
@@ -109,7 +110,7 @@ const Navbar = ({ cartCount, heartCount, cartAnimate, heartAnimate, setCartCount
                 }} 
             >
                 <i className="fa-solid fa-cart-shopping"></i>
-                {cartCount > 0 && <span className='cart-badge'>{cartCount}</span>}
+                {cartCount > 0 && <span className={`cart-badge ${cartAnimate ? "animate" : ""}`}>{cartCount}</span>}
             </div>
             
             {token ? (
@@ -138,7 +139,7 @@ const Navbar = ({ cartCount, heartCount, cartAnimate, heartAnimate, setCartCount
                 className="fa-solid fa-cart-shopping" 
                 onClick={() => token ? navigate("/cart") : alert("Please Login")} 
             ></i>
-            {cartCount > 0 && <span className='cart-badge'>{cartCount}</span>}
+            {cartCount > 0 && <span className={`cart-badge ${cartAnimate ? "animate" : ""}`}>{cartCount}</span>}
             </div>
 
             <div className='cart-container'>
@@ -146,7 +147,7 @@ const Navbar = ({ cartCount, heartCount, cartAnimate, heartAnimate, setCartCount
                 className="fa-solid fa-heart" 
                 onClick={() => token ? navigate("/favorite") : alert("Please Login")} 
             ></i>
-            {heartCount > 0 && <span className='heart-badge'>{heartCount}</span>}
+            {heartCount > 0 && <span className={`heart-badge ${heartAnimate ? "animate" : ""}`}>{heartCount}</span>}
             </div>
 
             <i 

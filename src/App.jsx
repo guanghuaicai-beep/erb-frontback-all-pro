@@ -20,6 +20,10 @@ import Checkout from "./components/Checkout";
 import Payment from "./components/Payment";
 import WishList from "./components/WishList";
 import { AuthProvider } from "./context/AuthContext";
+import ForgetPassword from './components/ForgetPassword';
+import ResetPassword from './components/ResetPassword';
+import OrderConfirmation from './components/OrderConfirmation';
+import OrderHistory from './components/OrderHistory';
 // import ForgetPassword from './components/ForgetPassword';
 // import ResePassword from './components/ForgetPassword';
 // import SingIn from './components/SignIn';
@@ -38,23 +42,41 @@ const ScrollToTop = () => {
   return null;
 };
 function App() {
-  const [count, setCount] = useState(0);
   const [cartCount, setCartCount] = useState(0);
+  const [cartAnimate, setCartAnimate] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
+  const [heartAnimate, setHeartAnimate] = useState(false);
+
+  const updateCartCount = (newCount) => {
+    setCartCount(newCount);
+    setCartAnimate(true);
+    setTimeout(() => setCartAnimate(false), 4000);
+  };
+
+  const updateHeartCount = (newCount) => {
+    setHeartCount(newCount);
+    setHeartAnimate(true);
+    setTimeout(() => setHeartAnimate(false), 4000);
+  };
 
   return (
     <div>
       <AuthProvider>
       <ScrollToTop />
       <Navbar 
-        setCartCount={setCartCount}  
-        setHeartCount={setHeartCount} />
+        cartCount={cartCount}
+        heartCount={heartCount}
+        cartAnimate={cartAnimate}
+        heartAnimate={heartAnimate}
+        setCartCount={updateCartCount}  
+        setHeartCount={updateHeartCount} 
+        />
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/course" element={<Course />} />
-          <Route path="/course/:slug" element={<CourseDetail />} />
+          <Route path="/course/:slug" element={<CourseDetail setCartCount={updateCartCount} setHeartCount={updateHeartCount}/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/joinus" element={<JoinUs />} />
           <Route path="/donation" element={<Donation />} />
@@ -63,10 +85,14 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/favorite" element={<WishList />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout setCartCount={updateCartCount} setHeartCount={updateHeartCount}/>} />
+          <Route path="/payment" element={<Payment setCartCount={updateCartCount} setHeartCount={updateHeartCount}/>} />
+          <Route path="/favorite" element={<WishList setHeartCount={updateHeartCount}/>} />
+          <Route path="/cart" element={<Cart setCartCount={updateCartCount}/>} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
+          <Route path="/orderhistory" element={<OrderHistory />} />
         </Routes>
       </div>
       <Footer />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/wishlist.css";
 
-const WishList = () => {
+const WishList = ({setHeartCount}) => {
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
@@ -35,6 +35,7 @@ const WishList = () => {
       .then(res => {
         console.log(res.data); // ✅ 修正 red -> res
         setWishlist(res.data);
+        setHeartCount(res.data.length);
         setLoading(false);
       })
       .catch(err => {
@@ -60,6 +61,7 @@ const WishList = () => {
       .then(() => {
         setMessage("✅ Course removed from wishlist");
         setWishlist(prev => prev.filter(item => item.course.id !== courseId));
+        setHeartCount(prev=>prev-1);
         setTimeout(() => setMessage(""), 3000);
       })
       .catch(err => {

@@ -48,16 +48,16 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="glass-card p-4 p-md-5">
-      <div className="logo">
-        <span className="logo-icon"></span>
+    <div className="forget-password-glass-card p-4 p-md-5">
+      <div className="forget-password-logo">
+        <span className="forget-password-logo-icon"></span>
       </div>
 
-      <h2 className="form-title line-simple-2"> 📘 Forget Password</h2>
+      <h2 className="forget-password-form-title forget-password-line-simple-2"> 📘 Forget Password</h2>
 
       <form onSubmit={handleSubmit} noValidate>
         {/* Login Method */}
-        <div className="login-method mb-4">
+        <div className="forget-password-login-method mb-4">
           <label>
             <input
               type="radio"
@@ -80,13 +80,13 @@ const ForgetPassword = () => {
 
         {/* Email */}
         {method === "email" && (
-          <div id="email-group" className="mb-4 login-field">
-            <div className="input-group has-validation">
-              <span className="input-group-text">✉️</span>
+          <div id="email-group" className="mb-4 forget-password-login-field">
+            <div className="forget-password-input-group has-validation">
+              <span className="forget-password-input-group-text">✉️</span>
               <input
                 type="email"
                 placeholder="Email address"
-                className={`form-control ${
+                className={`forget-password-form-control ${
                   submitted && errors.email
                     ? "is-invalid"
                     : submitted && email && !errors.email
@@ -98,20 +98,20 @@ const ForgetPassword = () => {
               />
             </div>
             {submitted && errors.email && (
-              <div className="error-message">{errors.email}</div>
+              <div className="forget-password-error-message">{errors.email}</div>
             )}
           </div>
         )}
 
         {/* Username */}
         {method === "username" && (
-          <div id="mobile-group" className="mb-4 login-field">
-            <div className="input-group has-validation">
-              <span className="input-group-text">📱</span>
+          <div id="mobile-group" className="mb-4 forget-password-login-field">
+            <div className="forget-password-input-group has-validation">
+              <span className="forget-password-input-group-text">📱</span>
               <input
                 type="text"
                 placeholder="Username"
-                className={`form-control ${
+                className={`forget-password-form-control ${
                   submitted && errors.username
                     ? "is-invalid"
                     : submitted && username && !errors.username
@@ -123,18 +123,18 @@ const ForgetPassword = () => {
               />
             </div>
             {submitted && errors.username && (
-              <div className="error-message">{errors.username}</div>
+              <div className="forget-password-error-message">{errors.username}</div>
             )}
           </div>
         )}
 
         {/* Send Button */}
-        <button type="submit" className="btn-send">
+        <button type="submit" className="forget-password-btn-send">
           Send
         </button>
 
         {/* Back to Sign In */}
-        <div className="back-link">
+        <div className="forget-password-back-link">
           <Link to="/signin">← Back to Sign In</Link>
         </div>
       </form>
@@ -142,7 +142,7 @@ const ForgetPassword = () => {
       {/* Notification */}
       {notification && (
         <div
-          className={`notification show ${
+          className={`forget-password-notification show ${
             notification.startsWith("❌") ? "error" : ""
           }`}
         >

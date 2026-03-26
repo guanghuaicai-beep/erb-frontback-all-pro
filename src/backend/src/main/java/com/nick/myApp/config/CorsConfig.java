@@ -21,7 +21,8 @@ public class CorsConfig {
         config.setAllowedOriginPatterns(List.of(
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "https://*.ngrok-free.dev"));
+                "https://*.ngrok-free.dev",
+                "https://erb-group-project-ngrok.netlify.app"));
 
         // 允許所有 header（包含 Authorization）
         config.setAllowedHeaders(List.of("*"));

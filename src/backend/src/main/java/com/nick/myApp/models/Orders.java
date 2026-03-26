@@ -7,6 +7,9 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
+
+import com.twilio.rest.api.v2010.account.call.Payment;
 
 @Entity
 @Table(name = "orders")
@@ -17,9 +20,9 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-   @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
@@ -36,12 +39,11 @@ public class Orders {
     @NotBlank(message = "Status cannot be empty")
     @Size(max = 20, message = "Status must be at most 20 characters")
     @Column(name = "status", nullable = false, length = 20)
-    private String status;
+    private String status = "pending";
 
-    @NotBlank(message = "Payment method cannot be empty")
-    @Size(max = 255, message = "Payment method must be at most 255 characters")
-    @Column(name = "payment_method", nullable = false, length = 255)
-    private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method", columnDefinition = "VARCHAR(20) DEFAULT 'NA'")
+    private PaymentMethod paymentMethod = PaymentMethod.NA;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -52,15 +54,23 @@ public class Orders {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items;
 
+    @PrePersist
+    protected void onCreate() {
+        if (this.orderNo == null || this.orderNo.trim().isEmpty()) {
+            this.orderNo = "ORD-" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
+        }
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
+
     public void calculateTotal() {
         if (items != null && !items.isEmpty()) {
             this.totalAmount = items.stream()
-                .map(i -> i.getPrice().multiply(BigDecimal.valueOf(i.getQuantity())))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                    .map(i -> i.getPrice().multiply(BigDecimal.valueOf(i.getQuantity())))
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
         } else {
             this.totalAmount = BigDecimal.ZERO;
         }
     }
 }
-
-

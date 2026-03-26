@@ -5,7 +5,7 @@ import '../css/coursedetail.css'
 import axios from 'axios';
 import CourseSyllabus from '../pdf/CourseSyllabus.pdf'
 
-const CourseDetail = () => {
+const CourseDetail = ({setCartCount,setHeartCount}) => {
     const { slug } = useParams();
     const currentCourse = courseList.find(item=>item.slug===slug);
     const [notification, setNotification] = useState("");
@@ -34,6 +34,7 @@ const CourseDetail = () => {
         )
         .then(res => {
             alert(`✅ ${res.data.courseName} has been added to your cart`);
+            setCartCount(prev=>prev+1);
             setTimeout(() => setNotification(""), 5000);
         })
         .catch(err => {
@@ -59,13 +60,15 @@ const CourseDetail = () => {
         )
         .then(res => {
             alert(`✅ ${res.data.courseName} has been added to favorites`);
+            setHeartCount(prev=>prev+1)
             setTimeout(() => setNotification(""), 5000);
         })
         .catch(err => {
             if (err.response?.status === 400) {
             alert("❌ Course already in favorites");
             } else {
-            alert(`❌ Failed to add to favourites: ${err.response?.data?.message || err.message}`);
+                alert("✅ Course already added to My Favourite")
+            // alert(`❌ Failed to add to favourites: ${err.response?.data?.message || err.message}`);
             }
             setTimeout(() => setNotification(""), 5000);
         });
