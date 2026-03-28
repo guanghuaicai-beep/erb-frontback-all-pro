@@ -372,3 +372,94 @@ button {
     display: none;
   }
 }
+
+@media (max-width: 430px) {
+  .wishlist-container {
+    width: 96vw;
+    min-width: unset;
+    margin: 5.5rem auto 3rem;
+    padding: 0.8rem;
+    border-radius: 0.7rem;
+  }
+
+  .wishlist-container h2 {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+  .wishlist-container h2 i {
+    padding: 0 0.5rem;
+  }
+
+  .wishlist-container p {
+    font-size: 0.95rem;
+  }
+
+  .wishlist-table {
+    margin: 0.8rem 0;
+  }
+  .wishlist-table th,
+  .wishlist-table td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.85rem;
+  }
+
+  .wishlist-table th:nth-child(1),
+  .wishlist-table td:nth-child(1) {
+    display: none;
+  }
+
+  .wishlist-table td input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .wishlist-table td:nth-of-type(2) {
+    padding-left: 0.5rem;
+    text-align: left;
+  }
+
+  .btn-remove {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+    border-radius: 0.35rem;
+  }
+
+  .btn-compare {
+    font-size: 1.1rem;
+    padding: 0.6rem 1rem;
+    margin: 1rem auto 0.5rem;
+    width: 100%;
+  }
+
+  .compare-container {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+  }
+  .compare-container .compare-heading {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+
+  .compare-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  .compare-table th,
+  .compare-table td {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.25rem;
+  }
+  .compare-table td:first-child {
+    width: 90px !important;
+  }
+  .compare-table td:last-child,
+  .compare-table td:nth-child(2) {
+    width: calc((100% - 90px) / 2) !important;
+    padding: 0.4rem 0.25rem !important;
+    text-align: center !important;
+  }
+  .compare-table tr:last-child td {
+    padding: 0.6rem 0.25rem !important;
+    text-align: left !important;
+  }
+}

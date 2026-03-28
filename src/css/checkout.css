@@ -46,3 +46,33 @@
     }
   }
 }
+
+@media (max-width: 430px) {
+  .checkout-container {
+    max-width: 95%;
+    margin: 6rem auto 3rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .checkout-table th,
+  .checkout-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  .checkout-total {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .checkout-actions {
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  .checkout-actions .btn-confirm {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+}

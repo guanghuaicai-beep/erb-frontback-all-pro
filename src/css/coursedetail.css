@@ -454,6 +454,7 @@ ul{
     }
     .coursetop {
         padding: 1rem var(--right-col-padding);
+        padding: 4rem;
         .courseleft .iconps {
             flex-direction: column;
             gap: 10px;
@@ -480,5 +481,10 @@ ul{
         .courselink {
             flex-direction: column;
         }
+    }
+}
+@media (max-width: 400px) {
+    .coursetop {
+        padding: 5rem 1rem 0 1rem;
     }
 }

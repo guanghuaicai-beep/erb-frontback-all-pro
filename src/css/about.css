@@ -676,3 +676,21 @@
         font-size: 1rem;
     }
 }
+
+@media (max-width: 400px) {
+    .abouttop {
+        padding: 2rem 1rem;
+        h1 {
+            font-size: 1.8rem;
+        }
+        h2 {
+            font-size: 1.6rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+        }
+        p {
+            font-size: 1rem;
+        }
+    }
+}

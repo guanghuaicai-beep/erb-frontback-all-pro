@@ -321,4 +321,35 @@ ul{
     }
 }
 
+@media (max-width: 442px) {
+    .navbar .main-logo {
+        max-width: 100px;
+        padding-left: 20px;
+    }
 
+    .navbarwelcome .welcome-text {
+        font-size: 0.85rem;
+    }
+    .navbarwelcome .btn-signout {
+        font-size: 0.8rem;
+        padding: 2px 6px;
+    }
+
+    .min-main-burger i,
+    .cart-container i,
+    .heart-container i {
+        font-size: 1.25rem;
+    }
+
+    .cart-badge,
+    .heart-badge {
+        font-size: 8px;
+        padding: 1px 3px;
+        top: -6px;
+        right: -6px;
+    }
+
+    .navbar .main-burger.active a {
+        font-size: 1.2rem;
+    }
+    }

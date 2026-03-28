@@ -68,7 +68,7 @@ const Navbar = ({ cartCount, heartCount, cartAnimate, heartAnimate, setCartCount
     <>
     <nav className="navbar" ref={navbarRef}>
         <div className="main-logo">
-            <img src="https://res.cloudinary.com/dzlcfmhts/image/upload/v1773632922/hkct_logo_sfi9iu.png" alt="logo" />
+            <Link to="/"><img src="https://res.cloudinary.com/dzlcfmhts/image/upload/v1773632922/hkct_logo_sfi9iu.png" alt="logo" /></Link>
             {/* <h1>hkct</h1> */}
         </div>
         <div className={`main-burger ${isMenuOpen ? 'active' : ''}`}>

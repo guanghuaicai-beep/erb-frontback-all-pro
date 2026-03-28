@@ -292,12 +292,35 @@
     .cyetitle{
         h1{
             font-size: 2.5rem;
-            /* color:red; */
             margin-bottom: 10px;
         }
         p{
             font-size: 1.35rem;
-            /* max-width: 1000px; */
+        }
+    }
+}
+@media (min-width:400px) and (max-width:467px){
+    .cyetitle{
+        padding-top: 6rem;
+    }
+    .allcourse{
+        padding: 1rem 1.5rem;
+        .allcoursebutton {
+            ul {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+}
+@media(max-width:399px){
+    .cyetitle{
+        padding-top: 6rem;
+        h1{
+            font-size: 1.5rem
+        }
+        p{
+            font-size: 1.2rem;
         }
     }
 }
